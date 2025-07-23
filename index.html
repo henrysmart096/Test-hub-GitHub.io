@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftEarnings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background-color: #0d0d0d; color: #fff; line-height: 1.6; }
+    nav {
+      background-color: #111;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-around;
+      color: #FFD700;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: #FFD700;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+    section {
+      padding: 2rem;
+      display: none;
+    }
+    section.active { display: block; }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px red;
+    }
+    h1 { color: #FFD700; text-align: center; margin-bottom: 1rem; }
+    input, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: 5px;
+      border: none;
+    }
+    button { background-color: red; color: white; cursor: pointer; }
+    .vip-card {
+      background-color: #2a2a2a;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-left: 5px solid #FFD700;
+    }
+    .vip-card.red { border-color: red; }
+    .info-box { margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" onclick="showSection('signup')">Sign Up</a>
+    <a href="#" onclick="showSection('dashboard')">Dashboard</a>
+    <a href="#" onclick="showSection('fund')">Fund</a>
+    <a href="#" onclick="showSection('vip1')">VIP 1</a>
+    <a href="#" onclick="showSection('vip2')">VIP 2</a>
+  </nav>
+
+  <section id="signup" class="active">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button onclick="signUp()">Create Account</button>
+    </div>
+  </section>
+
+  <section id="dashboard">
+    <div class="container">
+      <h1>Welcome, <span id="userName">User</span></h1>
+      <p><strong>Balance:</strong> ₦0.00</p>
+      <div class="vip-card">
+        <h3>VIP 1</h3>
+        <p>₦5,000 ➜ Earn ₦1,500 Daily</p>
+        <button onclick="showSection('vip1')">View Details</button>
+      </div>
+      <div class="vip-card red">
+        <h3>VIP 2</h3>
+        <p>₦8,000 ➜ Earn ₦2,000 Daily</p>
+        <button onclick="showSection('vip2')">View Details</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="fund">
+    <div class="container">
+      <h1>Fund Account</h1>
+      <div class="info-box">
+        <p><strong>Bank Name:</strong> Opay</p>
+        <p><strong>Account Number:</strong> 8058299731</p>
+        <p><strong>Account Name:</strong> Edet Monday Akpan</p>
+        <p>Send your VIP deposit to the account above. Manual confirmation required.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="vip1">
+    <div class="container">
+      <h1>VIP 1 Details</h1>
+      <p>Join with ₦5,000 and earn ₦1,500 daily.</p>
+      <p>Receive payments based on the account name you used at sign-up.</p>
+    </div>
+  </section>
+
+  <section id="vip2">
+    <div class="container">
+      <h1>VIP 2 Details</h1>
+      <p>Join with ₦8,000 and earn ₦2,000 daily.</p>
+      <p>Ensure you use correct details to receive your earnings.</p>
+    </div>
+  </section>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+    function signUp() {
+      const name = document.getElementById('name').value;
+      if (name) {
+        document.getElementById('userName').textContent = name;
+        showSection('dashboard');
+      } else {
+        alert('Please enter your name.');
+      }
+    }
+  </script>
+</body>
+</html>
